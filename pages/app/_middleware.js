@@ -6,7 +6,7 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_KEY
 );
 
-export async function middleware(req: NextRequest) {
+export async function middleware(req) {
   const { user } = await supabase.auth.api.getUserByCookie(req);
 
   console.log({ user });
