@@ -9,6 +9,8 @@ const supabase = createClient(
 export async function middleware(req) {
   const { user } = await supabase.auth.api.getUserByCookie(req);
 
+  console.log({ cookies: req.cookies });
+
   console.log({ user });
 
   NextResponse.next();
