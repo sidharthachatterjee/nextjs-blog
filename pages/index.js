@@ -14,9 +14,14 @@ export default function Home() {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    supabase.auth.signIn({
-      email,
-    });
+    supabase.auth.signIn(
+      {
+        email,
+      },
+      {
+        redirectTo: "https://nextjs-blog-two-theta-64.vercel.app/api/login",
+      }
+    );
   };
 
   return (
