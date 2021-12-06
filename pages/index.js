@@ -10,7 +10,6 @@ const supabase = createClient(
 
 export default function Home() {
   const [email, setEmail] = useState();
-  // const [password, setPassword] = useState();
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -19,7 +18,7 @@ export default function Home() {
         email,
       },
       {
-        redirectTo: "https://nextjs-blog-two-theta-64.vercel.app/api/login",
+        redirectTo: "https://nextjs-blog-two-theta-64.vercel.app/app",
       }
     );
   };
@@ -41,13 +40,6 @@ export default function Home() {
             value={email}
             onChange={(event) => setEmail(event.target.value)}
           />
-          {/* <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            type="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          /> */}
           <button type="submit">Login</button>
         </form>
       </main>
