@@ -16,7 +16,6 @@ export default function Home() {
     event.preventDefault();
     supabase.auth.signIn({
       email,
-      password,
     });
   };
 
