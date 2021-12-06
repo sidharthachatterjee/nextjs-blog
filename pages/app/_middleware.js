@@ -21,6 +21,12 @@ export async function middleware(req) {
 
   const isValid = jwt.verify(token, process.env.SUPABASE_JWT_SECRET);
 
+  console.log({
+    token,
+    SUPABASE_JWT_SECRET: process.env.SUPABASE_JWT_SECRET,
+    isValid,
+  });
+
   if (isValid) {
     NextResponse.next();
   } else {
