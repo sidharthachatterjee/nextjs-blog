@@ -21,11 +21,13 @@ export async function middleware(req) {
 
   const isValid = jwt.verify(token, process.env.SUPABASE_JWT_SECRET);
 
-  console.log({ isValid });
+  if (isValid) {
+    NextResponse.next();
+  } else {
+    NextResponse.redirect(`/`);
+  }
 
   // console.log({ user, data, token, error });
-
-  NextResponse.next();
 
   //   if (!user) {
   //     // If no user, redirect to index.
