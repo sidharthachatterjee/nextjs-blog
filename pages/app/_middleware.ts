@@ -11,6 +11,8 @@ export async function middleware(req: NextRequest) {
 
   console.log({ user });
 
+  NextResponse.next();
+
   //   if (!user) {
   //     // If no user, redirect to index.
   //     return { props: {}, redirect: { destination: "/", permanent: false } };
@@ -18,8 +20,6 @@ export async function middleware(req: NextRequest) {
 
   // If there is a user, return it.
   //   return { props: { user } };
-
-  return NextResponse.next();
 
   //   return new Response("Auth required", {
   //     status: 401,
