@@ -19,7 +19,7 @@ export async function middleware(req) {
 
   const token = req.cookies[`sb:token`];
 
-  const isValid = jwt.verify(token, process.env.SUPABASE_JWT_SECRET);
+  const isValid = await jwt.verify(token, process.env.SUPABASE_JWT_SECRET);
 
   console.log({
     token,
