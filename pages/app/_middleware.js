@@ -1,22 +1,29 @@
 import { NextRequest, NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.NEXT_PUBLIC_SUPABASE_KEY,
-  {
-    fetch: fetch,
-  }
-);
+const jwt = require("@tsndr/cloudflare-worker-jwt");
+
+// import { createClient } from "@supabase/supabase-js";
+
+// const supabase = createClient(
+//   process.env.NEXT_PUBLIC_SUPABASE_URL,
+//   process.env.NEXT_PUBLIC_SUPABASE_KEY,
+//   {
+//     fetch: fetch,
+//   }
+// );
 
 export async function middleware(req) {
-  const { user, data, token, error } = await supabase.auth.api.getUserByCookie(
-    req
-  );
+  // const { user, data, token, error } = await supabase.auth.api.getUserByCookie(
+  //   req
+  // );
 
-  console.log({ cookies: req.cookies });
+  const token = req.cookies[`sb:token`];
 
-  console.log({ user, data, token, error });
+  const isValid = jwt.verify(token, process.env.SUPABASE_JWT_SECRET);
+
+  console.log({ isValid });
+
+  // console.log({ user, data, token, error });
 
   NextResponse.next();
 
